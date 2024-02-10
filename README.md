@@ -16,4 +16,4 @@
 
 **Ano:** 3ºano
 
-**Fotografia:**  ![Fotografia do aluno]()
+**Fotografia:**  ![Fotografia do aluno](foto.jpeg)
