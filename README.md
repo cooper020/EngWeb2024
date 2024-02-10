@@ -4,17 +4,16 @@
 
 **Nome:** Engenharia WEB
 
-**Sigla:** Engenharia WEB
+**Sigla:** EngWeb2024
 
-**Ano:** EW
-
-**Nome:** 2024
+**Ano:** 2024
 
 ## Aluno
 
 **Nome:** Henrique Morais Pereira
 
-**ID:** a100831
+**ID:** A100831
 
-**Ano:**
-![Fotografia do aluno]()
+**Ano:** 3ºano
+
+**Fotografia:**  ![Fotografia do aluno]()
