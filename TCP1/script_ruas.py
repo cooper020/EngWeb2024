@@ -24,8 +24,8 @@ def generate_html(root):
                 for imagem in lista_imagem:
                     path = imagem.get('path')
                     if path is not None:
-                        path = path.replace('../imagem', '../MapaRuas-materialBase/imagem')
-                    html += f"<img src='{path}'/>\n"         
+                        path1 = path.replace('../imagem', '../MapaRuas-materialBase/imagem')
+                        html += f"<img src='{path1}' style='width:50%; height:auto; '/>\n"
 
             legenda = figura.find('legenda')
             if legenda is not None:
@@ -33,29 +33,21 @@ def generate_html(root):
 
             html += "</div>\n"
 
-
-
     html += "<h2>Descrição:</h2>\n"
-    lista_desc = corpo.findall('.//desc')
-    if lista_desc is not None:
-        for desc in lista_desc:
-            html += "<div>\n"
-            lista_para = desc.findall('para')
-            if lista_para is not None:
-                for para in lista_para:
-                    para_text = "".join(para.itertext())
-                    html += f"<p>{para_text}</p>\n"
-            html += "</div>\n"
-    
+    html += "<div>\n"
+    lista_para = corpo.findall('para')
+    if lista_para is not None:
+        for para in lista_para:
+            html += "<div>\n"    
+            para_text = "".join(para.itertext())
+            html += f"<p>{para_text}</p>\n"
+        html += "</div>\n"
 
-
-    html += "<h3>Casas:</h3>\n"
+    html += "<h2>Casas:</h2>\n"
     lista_casas = corpo.find('lista-casas')
     if lista_casas is not None:
-        
         for casa in lista_casas.findall('casa'):
             html += "<div>\n"
-
             numero = casa.find('número')
             if numero is not None:
                 html += f"<p>Número: {numero.text}</p>\n"
@@ -75,6 +67,18 @@ def generate_html(root):
             
             html += "</div>\n"
 
+            
+    html += "<h2>Atualmente:</h2>\n"
+
+    texto_numero = meta.find('número').text
+    resultado = texto_numero + "-"
+    pasta_imagens = f"./MapaRuas-materialBase/atual/"
+    if os.path.exists(pasta_imagens):
+        for filename in os.listdir(pasta_imagens):
+            if filename.startswith(str(resultado)):
+                path2 = os.path.join(pasta_imagens, filename)
+                path3 = path2.replace('./MapaRuas-materialBase/atual/', '../MapaRuas-materialBase/atual/')
+                html += f"<img src='{path3}' style='width:50%; height:auto; '/>\n"
 
     html += "</body>\n</html>"
     return html
