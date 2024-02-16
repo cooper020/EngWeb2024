@@ -19,38 +19,37 @@ def generate_html(root):
         for figura in lista_figura:
             html += "<div>\n"
 
-            imagem = figura.find('imagem')
-            if imagem is not None:
-                html += f"<img src='{imagem.get('imagem path')}'/>\n"
+            lista_imagem = figura.findall('imagem')
+            if lista_imagem is not None:
+                for imagem in lista_imagem:
+                    path = imagem.get('path')
+                    if path is not None:
+                        path = path.replace('../imagem', '../MapaRuas-materialBase/imagem')
+                    html += f"<img src='{path}'/>\n"         
 
             legenda = figura.find('legenda')
             if legenda is not None:
                 html += f"<p>Legenda: {legenda.text}</p>\n"
 
-
-            lista_para = figura.findall('para')
-            if lista_para is not None:
-                for para in lista_para:
-                    html += "<div>\n"
-
-                    lugar = para.find('lugar')
-                    if lugar is not None:
-                        html += f"<p>Lugar: {lugar.text}</p>"
-
-                    data = para.find('data')
-                    if data is not None:
-                        html += f"<p>Data: {data.text}</p>"
-
-                    entidade = para.find('entidade')
-                    if entidade is not None:
-                        html += f"<p>Entidade: {entidade.text}</p>"          
-            
-                    html += "</div>\n"
-            
-            
             html += "</div>\n"
 
-    html += "<h2>Casas:</h2>\n"
+
+
+    html += "<h2>Descrição:</h2>\n"
+    lista_desc = corpo.findall('.//desc')
+    if lista_desc is not None:
+        for desc in lista_desc:
+            html += "<div>\n"
+            lista_para = desc.findall('para')
+            if lista_para is not None:
+                for para in lista_para:
+                    para_text = "".join(para.itertext())
+                    html += f"<p>{para_text}</p>\n"
+            html += "</div>\n"
+    
+
+
+    html += "<h3>Casas:</h3>\n"
     lista_casas = corpo.find('lista-casas')
     if lista_casas is not None:
         
@@ -71,12 +70,14 @@ def generate_html(root):
             
             desc = casa.find('desc')
             if desc is not None and desc.find('para') is not None:
-                html += f"<p>Descrição: {desc.find('para').text}</p>\n"
+                desc_text = "".join(desc.itertext())
+                html += f"<p>Descrição: {desc_text}</p>\n\n\n\n"
             
             html += "</div>\n"
+
+
     html += "</body>\n</html>"
     return html
-
 
 
 def copy_clean_filename(filename):
@@ -98,7 +99,7 @@ def create (pasta, pasta_html):
                 f.write(html_content)
 
 def main():
-    pasta = 'MapaRuas-materialBase/texto'
+    pasta = './MapaRuas-materialBase/texto'
     pasta_html = 'html'
     create (pasta, pasta_html)
 
