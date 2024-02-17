@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC1: Exemplo</title>
+        <author>
+            <id>A100831</id>
+            <name>Henrique Morais Pereria</name>
+        </author>
+        <uc>
+            <sigla>EngWeb2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>     
+        <date>2024-02-11</date>
+    <meta>
+
+    <resumo>
+        <p>Primeiro parágrafo.</p>
+        <p>Segundo parágrafo.</p>
+        <p>Terceiro parágrafo com um </url>link</url><texto>url embutido</texto></p>
+    </resumo>
+
+    </resultados>
+        <resultado>resultado 1</resultado>
+        <resultado>resultado 2</resultado>
+    </resultados>    
+</doc>
