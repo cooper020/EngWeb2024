@@ -15,13 +15,15 @@
     <meta>
 
     <resumo>
-        <p>Primeiro parágrafo.</p>
-        <p>Segundo parágrafo.</p>
-        <p>Terceiro parágrafo com um </url>link</url><texto>url embutido</texto></p>
+        <p>Começamos por importar os módulos necessários para manipulação de arquivos e árvores XML.</p>
+        <p>O script então lê um arquivo XML e retorna a raiz da estrutura de dados XML. De seguida, gera uma string HTML correspondente, percorrendo a estrutura XML, extraindo informações relevantes e formatando-as para HTML.</p>
+        <p>O script também possui uma função para limpar o nome do arquivo, removendo caracteres indesejados de modo a criar um html com apenas o nome exato da rua</p>
+        <p>é criado uma pasta para os arquivos HTML, se ele ainda não existir. E de seguida, são percorridos todos os arquivos XML da pasta fornecida, converte cada um em HTML e guarda o resultado em um novo arquivo HTML no diretório HTML.</p>
+        <p>Para as imagens o processo é semelhante, pois extraimos o caminho presente nos XML percorridos</p>
+        <p>Finalmente, o script é executado, definindo os caminhos para os diretórios XML e HTML e iniciando o processo de criação.</p>
     </resumo>
 
     </resultados>
-        <resultado>resultado 1</resultado>
-        <resultado>resultado 2</resultado>
+        <resultado>Os resultados são visíveis através do index.html que nos leva para a página de selação da rua, em cada link dde cada rua somos encaminhados para uma nova página com os seus diversos dados</resultado>
     </resultados>    
 </doc>
