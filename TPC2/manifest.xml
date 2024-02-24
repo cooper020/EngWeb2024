@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC2: Escola de música</title>
+        <author>
+            <id>A100831</id>
+            <name>Henrique Morais Pereria</name>
+        </author>
+        <uc>
+            <sigla>EngWeb2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>     
+        <date>2024-02-24</date>
+    <meta>
+
+    <resumo>
+        <p>Começamos por fazer parse dos dados de um arquivo JSON e criando uma pasta para guardar os html.</p>
+        <p>Para cada categoria (alunos, cursos, instrumentos), o script cria um subdiretório e uma página index.html. Dentro de cada página index.html, cria uma lista de itens (alunos, cursos ou instrumentos).</p>
+        <p>Para cada item, ele cria uma página HTML separada com detalhes desse item. Se o item for um instrumento, ele cria um link para a página do instrumento usando o ID do instrumento.</p>
+        <p>Por fim, o script cria uma página index.html que serve como uma página inicial, contendo links para as páginas index.html de alunos, cursos e instrumentos.</p>
+
+        <p>O script Node.js é usado para criar um servidor HTTP simples que serve páginas HTML estáticas.</p>
+        <p>O servidor é criado usando a função createServer do módulo http. Esta função aceita uma função de callback que é chamada sempre que uma solicitação é recebida..</p>
+        <p>Para cada solicitação recebida, o script analisa o URL da solicitação para determinar o caminho do arquivo a ser servido. Se o caminho for /, ele serve o arquivo index.html na pasta html. Caso contrário, ele constrói o caminho do arquivo com base no diretório html e no caminho da solicitação.</p>
+        <p>Por fim, o servidor fica à escuta na porta 3010.</p>
+    </resumo>
+
+    </resultados>
+        <resultado>Os resultados são visíveis através do index.html após ser dado inicio ao servido em js. Leva-nos para a página inicial que contêm a escolha de que secção pretendemos obter a informação. É então possível navegar consoante a opção escolhida</resultado>
+    </resultados>    
+</doc>
