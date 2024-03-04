@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC2: Escola de música</title>
+        <author>
+            <id>A100831</id>
+            <name>Henrique Morais Pereria</name>
+        </author>
+        <uc>
+            <sigla>EngWeb2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>     
+        <date>2024-03-03</date>
+    <meta>
+
+    <resumo>
+        Claro, aqui está uma explicação detalhada do código, dividida em parágrafos separados:
+
+<p>No nosso script em python, a função `restructure_json` é definida para reestruturar o ficheiro JSON. Recebe então o caminho para o JSON</p>
+<p>Dentro da função, é inicializada uma lista vazia `new_json_data` para armazenar os novos dados JSON.</p>
+<p>O ficheiro JSON é percorrido linha por linha. Para cada linha e os dados são carregados para um dicionário</p>
+<p>O valor da chave "_id" é movido para o nível superior do dicionário usando item["_id"]["$oid"]</p>
+<p>Um novo dicionário new_item é criado com as informações reestruturadas, onde a chave "filmes" contém um OrderedDict com o "id" e os outros itens do dicionário original.</p>
+<p>Os novos dados JSON são escritos num novo ficheiro.</p>
+<p>No server.js os dados dos filmes são carregados do ficheiro JSON usando require.</p>
+<p>A função `genFilmesHTML` é definida para gerar o HTML para a página de filmes. Ela recebe a lista de filmes como entrada e retorna uma string HTML formatada.</p>
+<p>Um servidor HTTP é criado usando `http.createServer()`. Aqui lida com várias rotas pedidas, como /, /filmes, /cast, /genres, ...</p>
+<p>Para cada rota, são definidas respostas apropriadas. Por exemplo, para /filmes, é gerada uma lista de links para os detalhes de cada filme.</p>
+<p>As rotas /cast e /genres também fornecem listas de atores e gêneros, respectivamente, com links para os filmes associados a cada ator ou género.</p>
+<p>Quando a rota /cast é acedida, o servidor percorre todos os filmes no dataset. Para cada filme, ele verifica se há informações dos atores (cast). Se houver, ele itera sobre o elenco, adicionando cada ator a um conjunto (Set) para evitar duplicados.</p>
+<p>Quando uma rota específica para um ator é acedida (por exemplo, /cast/NomeDoAtor), o servidor descodifica o nome do ator na URL e usa-o para filtrar os filmes no dataset. Ele verifica se o nome do ator está presente na lista de atores (cast) de cada filme. Se estiver, esse filme é incluído na lista de filmes associados ao ator.</p>
+<p>Similarmente ao processo de obtenção do elenco, quando a rota /genres é acessada, o servidor percorre todos os filmes no dataset. Para cada filme, ele verifica se há informações de género (genres). Se houver, ele itera sobre os géneros, adicionando cada um a um conjunto (Set) para evitar duplicados.</p>
+<p>Quando uma rota específica para um género é acedida (por exemplo, /genres/Comédia), o servidor descodifica o nome do género na URL e usa-o para filtrar os filmes no dataset. Ele verifica se o nome do género está presente na lista de géneros (genres) de cada filme. Se estiver, esse filme é incluído na lista de filmes associados ao género.</p>
+
+    </resumo>
+
+    </resultados>
+        <resultado>Os resultados são visíveis através da inicialização do server.js na porta 5000</resultado>
+    </resultados>    
+</doc>
