@@ -21,24 +21,23 @@ function genFilmesHTML(filmes) {
                 </header>
                 <div class="w3-container">
                     <table class="w3-table w3-striped">
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Ano</th>
-                            <th>Elenco</th>
-                            <th>Géneros</th>
-                        </tr>
+                    
     `;
 
     filmes.forEach(filme => {
         pagHTML += `
-        <tr>
-            <td>${filme.id}</td>
-            <td>${filme.title}</td>
-            <td>${filme.year}</td>
-            <td>${filme.cast.join(', ')}</td>
-            <td>${filme.genres ? filme.genres.join(', ') : ''}</td>
-        </tr>
+        <ul>
+            <li><b>ID:</b> ${filme.id}</li>
+            <br>
+            <li><b>Título:</b> ${filme.title}</li>
+            <br>
+            <li><b>Ano:</b> ${filme.year}</li>
+            <br>
+            <li><b>Elenco:</b> ${filme.cast.join(', ')}</li>
+            <br>
+            <li><b>Género(s):</b> ${filme.genres ? filme.genres.join(', ') : ''}</li>
+        </ul>
+        <br>
         `;
     });
 
@@ -58,19 +57,21 @@ http.createServer((req, res) => {
     var q = url.parse(req.url, true)
 
     if (q.pathname === '/') {
-        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         res.write(`
             <!DOCTYPE html>
             <html>
             <head>
                 <title>Opções</title>
+                <link rel="stylesheet" href="w3.css"/>
             </head>
             <body>
-                <h1>Escolha uma opção:</h1>
+                <h1>Bem vindo à página de filmes:</h1>
+                <h2>Escolha uma opção:</h2>
                 <ul>
                     <li><a href="/filmes">Filmes</a></li>
-                    <li><a href="/cast">Cast</a></li>
-                    <li><a href="/genres">Genres</a></li>
+                    <li><a href="/cast">Atores</a></li>
+                    <li><a href="/genres">Géneros</a></li>
                 </ul>
             </body>
             </html>
@@ -79,7 +80,7 @@ http.createServer((req, res) => {
 
     } else if (q.pathname === '/filmes') {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        res.write('<h1>Listagem de Filmes</h1>');
+        res.write('<h1>Lista de Filmes</h1>');
         filmes.forEach(filme => {
             res.write(`<p><a href="/filmes/${filme.filmes.id}">${filme.filmes.title}</a></p>`);
         });
@@ -101,7 +102,7 @@ http.createServer((req, res) => {
     
     else if (q.pathname === '/cast') {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        res.write('<h1>Listagem de Atores</h1>');
+        res.write('<h1>Lista de Atores</h1>');
         let atores = new Set();
         filmes.forEach(filme => { 
             if(filme && filme.filmes.cast){
@@ -132,7 +133,7 @@ http.createServer((req, res) => {
     }
     else if (q.pathname === '/genres') {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        res.write('<h1>Listagem de Gêneros</h1>');
+        res.write('<h1>Lista de Géneros</h1>');
         let generos = new Set();
         filmes.forEach(filme => { 
             if(filme && filme.filmes.genres){
@@ -151,7 +152,7 @@ http.createServer((req, res) => {
         let filmesGenero = filmes.filter(filme => filme.filmes.genres && filme.filmes.genres.includes(genero));
         if (filmesGenero.length > 0) {
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-            res.write(`<h1>Filmes do gênero ${genero}</h1>`);
+            res.write(`<h1>Filmes do género ${genero}</h1>`);
             filmesGenero.forEach(filme => {
                 res.write(`<p><a href="/filmes/${filme.filmes.id}">${filme.filmes.title}</a></p>`);
             });
@@ -165,5 +166,5 @@ http.createServer((req, res) => {
         res.write('<h1>404 Not Found</h1>');
         res.end();
     }
-}).listen(3000);
-console.log("Servidor na porta 3000...");
+}).listen(5000);
+console.log("Servidor na porta 5000...");
