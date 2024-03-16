@@ -53,7 +53,7 @@ var compositoresServer = http.createServer((req, res) => {
 
                 // GET /compositores/:id --------------------------------------------------------------------
                 else if(/\/compositores\/(C)[0-9]+$/i.test(req.url)){
-                    id = req.url.split('/')[2]
+                    id = req.url.split('/')[3]
                     axios.get("http://localhost:3000/compositores/" + id)
                         .then(resp => {
                             compositores = resp.data
@@ -141,6 +141,46 @@ var compositoresServer = http.createServer((req, res) => {
                         });
                 }
 
+                // GET /periodos/criar - Retorna o formulário para criar um novo período
+                else if (req.url == '/periodos/registo') {
+                    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                    res.write(templates.periodoFormPage(d));
+                    res.end();
+                }
+
+                // GET /periodos/edit/:id - Retorna o formulário para editar um período específico
+                else if (/\/periodos\/edit\/(C)[0-9]+$/i.test(req.url)) {
+                    const id = req.url.split('/')[3];
+                    axios.get(`http://localhost:3000/periodos/${id}`)
+                        .then(resp => {
+                            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                            res.write(templates.periodoEditFromPage(resp.data, d));
+                            res.end();
+                        })
+                        .catch(erro => {
+                            res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+                            res.write(`<p>Não foi possível obter as informações do período ${id} :: ${erro}</p>`);
+                            res.end();
+                        });
+                }
+
+                // GET /periodos/delete/:id - Retorna o formulário para confirmar a exclusão de um período
+                else if (/\/periodos\/delete\/(C)[0-9]+$/i.test(req.url)) {
+                    const id = req.url.split('/')[3];
+                    axios.get(`http://localhost:3000/periodos/${id}`)
+                        .then(resp => {
+                            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                            res.write(templates.periodosDeleteConfirmationPage(resp.data, d));
+                            res.end();
+                        })
+                        .catch(erro => {
+                            res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+                            res.write(`<p>Não foi possível obter as informações do período ${id} :: ${erro}</p>`);
+                            res.end();
+                        });
+                }
+
+            
                 // GET request -> Erro
                 else{
                     res.writeHead(500, {'Content-Type' : 'text/html; charset=utf-8'})
@@ -196,6 +236,56 @@ var compositoresServer = http.createServer((req, res) => {
                                 res.end();
                             });
                     }
+
+                    // POST /periodos/registo
+                    else if (req.url == '/periodos/registo') {
+                        collectRequestBodyData(req, (data) => {
+                            axios.post('http://localhost:3000/periodos', data)
+                                .then(resp => {
+                                    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                                    res.write("<p>Período " + data.nome + " foi registrado com sucesso.</p>");
+                                    res.end();
+                                })
+                                .catch(erro => {
+                                    res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+                                    res.write(`<p>Não foi possível registrar o período ${data.nome} :: ${erro}</p>`);
+                                    res.end();
+                                });
+                        });
+                    }
+                    
+
+                    else if (req.url.startsWith('/periodos/edit/') && req.method === "POST") {
+                        const id = req.url.split('/')[3];
+                        axios.put(`http://localhost:3000/periodos/${id}`)
+                            .then(resp => {
+                                res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                                res.write("<p>Período " + id + " foi alterado com sucesso.</p>");
+                                res.end();
+                            })
+                            .catch(erro => {
+                                res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+                                res.write(`<p>Não foi possível alterar o período ${id} :: ${erro}</p>`);
+                                res.end();
+                            });
+                    }
+                    
+                    
+                    else if (req.url.startsWith('/periodos/delete/') && req.method === "POST") {
+                        const id = req.url.split('/')[3];
+                        axios.delete(`http://localhost:3000/periodos/${id}`)
+                            .then(resp => {
+                                res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                                res.write("<p>Período " + id + " foi eliminado com sucesso.</p>");
+                                res.end();
+                            })
+                            .catch(erro => {
+                                res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+                                res.write(`<p>Não foi possível excluir o período ${id} :: ${erro}</p>`);
+                                res.end();
+                            });
+                    }
+                    
         break;
 
                     
@@ -209,6 +299,7 @@ var compositoresServer = http.createServer((req, res) => {
         }
     }
 })
+
 
 compositoresServer.listen(3003, ()=>{
     console.log("Servidor à escuta na porta 3003...")
