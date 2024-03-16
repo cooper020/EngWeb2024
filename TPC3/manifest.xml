@@ -2,7 +2,7 @@
 
 <doc>
     <meta>
-        <title>TPC2: Escola de música</title>
+        <title>TPC3: Filme</title>
         <author>
             <id>A100831</id>
             <name>Henrique Morais Pereria</name>
@@ -15,7 +15,6 @@
     <meta>
 
     <resumo>
-        Claro, aqui está uma explicação detalhada do código, dividida em parágrafos separados:
 
 <p>No nosso script em python, a função `restructure_json` é definida para reestruturar o ficheiro JSON. Recebe então o caminho para o JSON</p>
 <p>Dentro da função, é inicializada uma lista vazia `new_json_data` para armazenar os novos dados JSON.</p>
