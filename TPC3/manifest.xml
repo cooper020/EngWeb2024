@@ -16,7 +16,7 @@
 
     <resumo>
 
-<p>No nosso script em python, a função `restructure_json` é definida para reestruturar o ficheiro JSON. Recebe então o caminho para o JSON</p>
+<p>No script em python, a função `restructure_json` é definida para reestruturar o ficheiro JSON. Recebe então o caminho para o JSON</p>
 <p>Dentro da função, é inicializada uma lista vazia `new_json_data` para armazenar os novos dados JSON.</p>
 <p>O ficheiro JSON é percorrido linha por linha. Para cada linha e os dados são carregados para um dicionário</p>
 <p>O valor da chave "_id" é movido para o nível superior do dicionário usando item["_id"]["$oid"]</p>
