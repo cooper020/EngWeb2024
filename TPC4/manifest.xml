@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC4: Compositores</title>
+        <author>
+            <id>A100831</id>
+            <name>Henrique Morais Pereria</name>
+        </author>
+        <uc>
+            <sigla>EngWeb2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>     
+        <date>2024-03-17</date>
+    <meta>
+
+    <resumo>
+        <p>Nste TPC pretende-se implementar um serviço com as operações de CRUD sobre compositores e sobre períodos. </p>
+        <p>No script em python, faz se a restruturação do dataset antigo para um dataset novo de modo a ter uma secção de todos os periodos existentes, visto o script percorrer todo o dataset e à medida que o faz atribui um id a cada período diferente</p>
+        <p>Na app.js indica-se os ficheiros com as respetivas rotas possíveis: entre as quais compositores, periodos e index</p>
+        <p>Em compositores.js começa-se por listar todos os compositores por ordem alfabética, obtidos do servidor local.</p>
+        <p>Depois, foi estabelecida a funcionalidade para registar um novo compositor, apresentando uma página de formulário.</p>
+        <p>Após o preenchimento do formulário, os dados são postados no servidor local.</p>
+        <p>Também permite visualizar o perfil de um compositor específico, cujos dados são obtidos do servidor local.</p>
+        <p>Além disso, fornece a opção de editar o perfil de um compositor, apresentando uma página de formulário com os dados atuais do compositor.</p>
+        <p>Após a edição, os dados atualizados são enviados para o servidor local.</p>
+        <p>Existe também uma funcionalidade para eliminar um compositor, onde o ID do compositor é fornecido e o compositor correspondente é eliminado do servidor local.</p>
+        <p>Por fim, há um endpoint para filtrar compositores por período.</p>
+        <p>Relativamente a periodos.js, começa-se por obter todos os períodos de uma API e renderizar uma página com essa lista.</p> 
+        <p>Também se fornece uma página de formulário para o registo de um novo período.</p> 
+        <p>Quando os dados do formulário são submetidos, um novo período é criado na API e o utilizador é redirecionado para a página de lista de períodos.</p>
+        <p>Para um período específico, o código obtém os detalhes desse período e os compositores associados a partir da API, e renderiza uma página de perfil.</p>
+        <p>Também permite a edição de um período específico, onde os detalhes atualizados são enviados para a API e o utilizador é novamente redirecionado para a página de lista de períodos.</p>
+        <p>Existe ainda a opção de apagar um período específico.</p> 
+        <p>Em todas as rotas, se ocorrer um erro durante a comunicação com a API, uma página de erro é renderizada com os detalhes do erro.</p>
+        <p>A data atual é passada para todas as páginas renderizadas.</p>
+        <p>Todos as funções que são chamadas pelas rotdas de que originam a visualização da página estão presentes no ficheiro templates</p>
+        <p>Na pasta public encontramos a stylesheet usada em todas as páginas da aplicação web</p>
+
+
+    </resumo>
+
+    </resultados>
+        <resultado>Os resultados são visíveis através da inicialização do server.js na porta 2021</resultado>
+    </resultados>    
+</doc>
